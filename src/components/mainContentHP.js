@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function importAll(r) {
   let images = {};
@@ -44,11 +45,11 @@ export function Home() {
         </p>
         <div>
           <button>
-            <a href="##">Sign Up</a>
+            <Link to="/sign-up">Sign Up</Link>{" "}
           </button>
 
           <button>
-            <a href="##">Sign In</a>
+            <Link to="/sign-in">Sign In</Link>{" "}
           </button>
         </div>
       </section>

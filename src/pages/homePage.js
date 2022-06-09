@@ -1,5 +1,5 @@
-import { Header } from "./header";
-import { Home } from "./mainContentHP";
+import { Header } from "../components/header";
+import { Home } from "../components/mainContentHP";
 
 export function HomePage() {
   return (
