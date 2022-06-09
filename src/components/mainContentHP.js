@@ -44,11 +44,19 @@ export function Home() {
           memories anytime, anywhere
         </p>
         <div>
-          <button>
+          <button
+            onClick={() => {
+              window.location.href = "http://localhost:3000/sign-up";
+            }}
+          >
             <Link to="/sign-up">Sign Up</Link>{" "}
           </button>
 
-          <button>
+          <button
+            onClick={() => {
+              window.location.href = "http://localhost:3000/sign-in";
+            }}
+          >
             <Link to="/sign-in">Sign In</Link>{" "}
           </button>
         </div>

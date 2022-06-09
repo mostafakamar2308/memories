@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../images/Memories.png";
 
 export function Header() {
@@ -6,8 +7,12 @@ export function Header() {
       <div>
         <img src={logo}></img>
       </div>
-      <button>
-        <a href="##">Sign In</a>
+      <button
+        onClick={() => {
+          window.location.href = "http://localhost:3000/sign-in";
+        }}
+      >
+        <Link to="/sign-in">Sign In</Link>
       </button>
     </header>
   );

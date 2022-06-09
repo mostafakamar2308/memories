@@ -1,4 +1,4 @@
-import { SignInForm } from "../components/signInForm";
+import { SignUpForm } from "../components/signUpForm";
 
 function importAll(r) {
   let images = {};
@@ -13,7 +13,8 @@ const images = importAll(
 );
 
 let keys = Object.keys(images);
-export function SignInPage() {
+
+export function SignUpPage() {
   return (
     <div className="form-container">
       {keys.map((ele, index) => {
@@ -30,7 +31,7 @@ export function SignInPage() {
           ></img>
         );
       })}
-      <SignInForm />
+      <SignUpForm />
     </div>
   );
 }

@@ -67,21 +67,93 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.form-container > div {
+  width: 40%;
+  text-align: center;
 }
 
 form {
-  width: 50%;
+  width: calc(100% + 2rem);
   font-size: 2em;
-  height: 40%;
+  height: fit-content;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: white;
   border-radius: 30px;
+  padding: 2rem 1rem;
 }
 form input {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  width: 80%;
+  text-indent: 10px;
+  padding: 0.15rem 0;
 }
 form input[type="submit"] {
+  width: fit-content;
+  padding: 0.25rem 0.75rem;
+  margin-top: 10px;
+  border: none;
+  background-color: springgreen;
   color: white;
+  text-align: center;
+  border-radius: 10px;
+  text-indent: 0;
+  cursor: pointer;
+}
+.scribble {
+  animation: scribble-animation linear 0s infinite alternate;
+}
+.scribble-1 {
+  top: 50px;
+  left: 100px;
+  animation-duration: 300ms;
+}
+.scribble-2 {
+  top: 300px;
+  left: 150px;
+  animation-duration: 1.5s;
+}
+.scribble-3 {
+  top: 450px;
+  left: 500px;
+  animation-duration: 800ms;
+}
+.scribble-4 {
+  top: 50px;
+  right: 100px;
+
+  animation-duration: 600ms;
+}
+.scribble-5 {
+  top: 350px;
+  right: 200px;
+  animation-duration: 2s;
+}
+.scribble-6 {
+  top: 50px;
+  right: 55%;
+  animation-duration: 1s;
+}
+h1 {
+  font-size: 3em !important;
+}
+.form-container h1,
+.form-container p {
+  margin: 25px;
+  font-size: 1.5rem;
+}
+.form-container a {
+  color: seagreen;
+}
+
+@keyframes scribble-animation {
+  0% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: 15px;
+  }
 }
