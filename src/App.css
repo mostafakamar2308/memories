@@ -50,7 +50,8 @@ main {
   justify-content: flex-start;
   align-items: center;
   row-gap: 30px;
-  padding-top: 5rem;
+  padding-top: 3rem;
+  text-align: left;
 }
 .descriptionSite > div {
   display: flex;
@@ -90,6 +91,13 @@ form input {
   width: 80%;
   text-indent: 10px;
   padding: 0.15rem 0;
+  border: rgb(51, 200, 116) 2px solid;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+form input:focus {
+  outline: none;
+  border: seagreen 2px solid;
 }
 form input[type="submit"] {
   width: fit-content;
@@ -147,6 +155,7 @@ h1 {
 }
 .form-container a {
   color: seagreen;
+  text-decoration: underline;
 }
 
 @keyframes scribble-animation {

@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import App from "../App";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -25,23 +26,17 @@ const auth = getAuth(app);
 
 export function signInFn(email, pass) {
   console.log({ email, pass });
-  signInWithEmailAndPassword(auth, email, pass)
-    .then((userCreditials) => {
-      console.log(userCreditials.user);
-      console.log(`Welcome Back Master ${userCreditials.user.email}`);
-      return userCreditials.user;
-    })
-    .catch((err) => {
-      return <Modal msg={err} />;
-    });
+  signInWithEmailAndPassword(auth, email, pass).then((userCreditials) => {
+    console.log(userCreditials.user);
+    console.log(`Welcome Back Master ${userCreditials.user.email}`);
+    return userCreditials.user;
+  });
 }
 
 export function signUpFn(name, email, pass) {
-  createUserWithEmailAndPassword(auth, email, pass)
-    .then((userCreditials) => {
-      userCreditials.user.displayName = name;
-      console.log(userCreditials.user);
-      return userCreditials.user;
-    })
-    .catch((err) => <Modal msg={err} />);
+  createUserWithEmailAndPassword(auth, email, pass).then((userCreditials) => {
+    userCreditials.user.displayName = name;
+    console.log(userCreditials.user);
+    return userCreditials.user;
+  });
 }

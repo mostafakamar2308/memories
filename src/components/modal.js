@@ -5,7 +5,7 @@ export function Modal(props) {
   return (
     visible && (
       <div className="modal">
-        <h1>props.msg</h1>
+        <h1>{props.msg}</h1>
         <button onClick={() => setVisible(!visible)}>OK</button>
       </div>
     )
