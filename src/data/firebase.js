@@ -1,11 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { Modal } from "../components/modal";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBZNfoMxHrmbnja_yRW4RuM0C7GJsDFyL0",
   authDomain: "people-memories.firebaseapp.com",
@@ -19,3 +21,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+export function signInFn(email, pass) {
+  console.log({ email, pass });
+  signInWithEmailAndPassword(auth, email, pass)
+    .then((userCreditials) => {
+      console.log(userCreditials.user);
+      console.log(`Welcome Back Master ${userCreditials.user.email}`);
+      return userCreditials.user;
+    })
+    .catch((err) => {
+      return <Modal msg={err} />;
+    });
+}

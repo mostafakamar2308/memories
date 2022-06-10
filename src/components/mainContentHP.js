@@ -46,18 +46,22 @@ export function Home() {
         <div>
           <button
             onClick={() => {
-              window.location.href = "http://localhost:3000/sign-up";
+              document.querySelector(".signUp").click();
             }}
           >
-            <Link to="/sign-up">Sign Up</Link>{" "}
+            <Link className="signUp" to="/sign-up">
+              Sign Up
+            </Link>{" "}
           </button>
 
           <button
             onClick={() => {
-              window.location.href = "http://localhost:3000/sign-in";
+              document.querySelector(".signIn").click();
             }}
           >
-            <Link to="/sign-in">Sign In</Link>{" "}
+            <Link className="signIn" to="/sign-in">
+              Sign In
+            </Link>{" "}
           </button>
         </div>
       </section>
