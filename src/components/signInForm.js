@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInFn } from "../data/firebase";
 
 export function SignInForm() {
@@ -7,6 +7,7 @@ export function SignInForm() {
     email: "",
     pass: "",
   });
+  const navigate = useNavigate();
 
   function updateInput(e) {
     setInput((old) => {
@@ -18,7 +19,9 @@ export function SignInForm() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    signInFn(input.email, input.pass);
+    signInFn(input.email, input.pass).then(() => {
+      navigate("/memories");
+    });
   }
   return (
     <div>

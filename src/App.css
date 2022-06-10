@@ -101,7 +101,7 @@ form input:focus {
 }
 form input[type="submit"] {
   width: fit-content;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
   margin-top: 10px;
   border: none;
   background-color: springgreen;
@@ -165,4 +165,42 @@ h1 {
   100% {
     margin-top: 15px;
   }
+}
+.user-photo {
+  cursor: pointer;
+}
+.user-photo img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.memory {
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template-rows: 55% 15% 30%;
+  row-gap: 5px;
+  border: seagreen 1px solid;
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: seagreen 0 0 5px 0;
+}
+.memories-container {
+  padding: 1rem 2rem;
+}
+.memory img {
+  width: 398px;
+  height: 270px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.memory span {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding: 5px;
+  background-color: #bae8a5;
+  border-bottom-right-radius: 20px;
 }
