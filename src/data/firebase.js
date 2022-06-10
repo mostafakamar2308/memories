@@ -35,3 +35,13 @@ export function signInFn(email, pass) {
       return <Modal msg={err} />;
     });
 }
+
+export function signUpFn(name, email, pass) {
+  createUserWithEmailAndPassword(auth, email, pass)
+    .then((userCreditials) => {
+      userCreditials.user.displayName = name;
+      console.log(userCreditials.user);
+      return userCreditials.user;
+    })
+    .catch((err) => <Modal msg={err} />);
+}

@@ -1,17 +1,37 @@
 import { Link } from "react-router-dom";
+import React from "react";
+import { signUpFn } from "../data/firebase";
 
 export function SignUpForm() {
+  const [input, setInput] = React.useState({
+    name: "",
+    email: "",
+    pass: "",
+  });
+
+  function updateInput(e) {
+    setInput((old) => {
+      return {
+        ...old,
+        [e.target.name]: e.target.value,
+      };
+    });
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    signUpFn(input.name, input.email, input.pass);
+  }
   return (
     <div>
       <h1>Sign Up</h1>
       <form>
         <label htmlFor="Name">Your Name</label>
-        <input name="Name"></input>
+        <input name="name" onChange={updateInput}></input>
         <label htmlFor="email">Email</label>
-        <input type="email" name="email"></input>
+        <input type="email" name="email" onChange={updateInput}></input>
         <label htmlFor="pass">password</label>
-        <input type="password" name="pass"></input>
-        <input type="submit" />
+        <input type="password" name="pass" onChange={updateInput}></input>
+        <input type="submit" onClick={handleSubmit} />
       </form>
       <p>
         Have an Email? <Link to="/sign-in">Sign In</Link> Now{" "}
