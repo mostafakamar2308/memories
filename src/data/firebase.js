@@ -1,12 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-import { getFirestore, doc, setDoc, collection } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZNfoMxHrmbnja_yRW4RuM0C7GJsDFyL0",
@@ -25,14 +26,12 @@ export const db = getFirestore(app);
 export let user;
 
 export async function signInFn(email, pass) {
-  console.log({ email, pass });
   await signInWithEmailAndPassword(auth, email, pass).then((userCreditials) => {
     console.log(userCreditials.user);
     console.log(`Welcome Back Master ${userCreditials.user.email}`);
     user = userCreditials.user;
     return user;
   });
-  console.log(user);
 }
 
 export async function signUpFn(name, email, pass) {
@@ -50,11 +49,25 @@ export async function signUpFn(name, email, pass) {
         tags: [],
       });
       //collection(db, "users", user.uid, "memories");
-      setDoc(doc(db, "users", user.uid, "memories", "14-6-2022"), {
-        title: "First Memory",
-        description: "You have 1 memory per day",
-        date: "14-6-2022",
-        img: "https://via.placeholder.com/350x150",
-      });
+      setDoc(
+        doc(
+          db,
+          "users",
+          user.uid,
+          "memories",
+          `${new Date().getUTCDate()}-${
+            new Date().getMonth() + 1
+          }-${new Date().getFullYear()}`
+        ),
+        {
+          title: "First Memory",
+          description: "You have 1 memory per day",
+          date: "14-6-2022",
+          img: "https://via.placeholder.com/350x150",
+        }
+      );
+    })
+    .then(() => {
+      signInFn(email, pass);
     });
 }
