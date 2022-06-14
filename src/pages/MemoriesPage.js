@@ -1,6 +1,6 @@
 import { Header } from "../components/header";
 import { Memory } from "../components/memory";
-import img from "../images/Memories-logos.jpeg";
+import img from "../images/japan.jpg";
 
 export function MemoriesPage() {
   return (

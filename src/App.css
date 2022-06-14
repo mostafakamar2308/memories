@@ -177,30 +177,37 @@ h1 {
 
 .memory {
   width: 400px;
-  height: 400px;
+  row-gap: 10px;
   display: grid;
-  grid-template-rows: 55% 15% 30%;
-  row-gap: 5px;
   border: seagreen 1px solid;
   position: relative;
-  text-align: center;
+  text-align: left;
   border-radius: 20px;
   box-shadow: seagreen 0 0 5px 0;
+  padding: 0 0 30px;
+  color: #3b4650;
 }
 .memories-container {
   padding: 1rem 2rem;
 }
 .memory img {
-  width: 398px;
-  height: 270px;
+  width: 100%;
+  margin: 0 auto;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+.memory h1 {
+  padding-left: 5px;
+}
+.memory p {
+  padding: 0 10px;
+}
 .memory span {
+  color: #616b74;
   position: absolute;
   bottom: 0px;
   right: 0px;
   padding: 5px;
-  background-color: #bae8a5;
-  border-bottom-right-radius: 20px;
+  border-radius: 7px;
+  box-shadow: inset #3b465073 0 0 10px 0px;
 }
