@@ -9,9 +9,7 @@ export function SignUpForm() {
     email: "",
     pass: "",
   });
-
   const navigate = useNavigate();
-
   function updateInput(e) {
     setInput((old) => {
       return {

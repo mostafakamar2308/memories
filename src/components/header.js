@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { db, user } from "../data/firebase";
 import logo from "../images/Memories.png";
 import { getDoc, doc } from "firebase/firestore";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 export function Header() {
   const [userName, setUserName] = useState("");
 
