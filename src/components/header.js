@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
-import { user } from "../data/firebase";
+import { db, user } from "../data/firebase";
 import logo from "../images/Memories.png";
-import photo from "../images/streamlinehq-book-essential-icons-48.PNG";
+import { getDoc, doc } from "firebase/firestore";
+import { useEffect, useRef } from "react";
 export function Header() {
+  const userSnap = useRef(0);
+  async function getUserData() {
+    if (user) {
+      let userRef = doc(db, "users", user.uid);
+      userSnap.current = await getDoc(userRef);
+      console.log(userSnap.current.data());
+      return userSnap.current.data();
+    }
+  }
+  useEffect(() => {
+    getUserData();
+  }, []);
   return (
     <header>
       <div>
@@ -18,7 +31,7 @@ export function Header() {
         </button>
       ) : (
         <div className="user-photo">
-          <img src={photo} />
+          <h3>{userSnap.current.data().displayName}</h3>
         </div>
       )}
     </header>

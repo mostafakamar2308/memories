@@ -1,14 +1,12 @@
 // Import the functions you need from the SDKs you need
-import App from "../App";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { Modal } from "../components/modal";
-import { useNavigate } from "react-router-dom";
+
+import { getFirestore, doc, setDoc, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZNfoMxHrmbnja_yRW4RuM0C7GJsDFyL0",
@@ -22,8 +20,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
+export const db = getFirestore(app);
 export let user;
 
 export async function signInFn(email, pass) {
@@ -34,15 +32,29 @@ export async function signInFn(email, pass) {
     user = userCreditials.user;
     return user;
   });
+  console.log(user);
 }
 
 export async function signUpFn(name, email, pass) {
-  await createUserWithEmailAndPassword(auth, email, pass).then(
-    (userCreditials) => {
+  await createUserWithEmailAndPassword(auth, email, pass)
+    .then((userCreditials) => {
       userCreditials.user.displayName = name;
       console.log(userCreditials.user);
       user = userCreditials.user;
       return user;
-    }
-  );
+    })
+    .then((user) => {
+      setDoc(doc(db, "users", user.uid), {
+        displayName: name,
+        memory: {},
+        tags: [],
+      });
+      //collection(db, "users", user.uid, "memories");
+      setDoc(doc(db, "users", user.uid, "memories", "14-6-2022"), {
+        title: "First Memory",
+        description: "You have 1 memory per day",
+        date: "14-6-2022",
+        img: "https://via.placeholder.com/350x150",
+      });
+    });
 }
