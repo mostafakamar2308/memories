@@ -186,6 +186,7 @@ h1 {
   box-shadow: seagreen 0 0 5px 0;
   padding: 0 0 30px;
   color: #3b4650;
+  overflow: hidden;
 }
 .memories-container {
   padding: 1rem 2rem;
@@ -195,6 +196,10 @@ h1 {
   margin: 0 auto;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  transition: 0.5s;
+}
+.memory img:hover {
+  transform: scale(1.1);
 }
 .memory h1 {
   padding-left: 5px;
@@ -206,8 +211,62 @@ h1 {
   color: #616b74;
   position: absolute;
   bottom: 0px;
-  right: 0px;
+  right: 1px;
   padding: 5px;
-  border-radius: 7px;
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
   box-shadow: inset #3b465073 0 0 10px 0px;
+}
+.memory-btn {
+  position: fixed;
+  bottom: 3rem;
+  right: 5rem;
+  cursor: pointer;
+}
+.memory-btn img {
+  width: 70px;
+}
+.newMemory {
+  width: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #3b4650;
+  border-radius: 15px;
+  box-shadow: #3b4650a4 0 0 0 1500px;
+}
+.newMemory > :first-child {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  border-bottom: 1px solid white;
+}
+.newMemory :first-child > button {
+  width: 50px;
+  height: 50px;
+  text-align: center !important;
+  color: white;
+  font-size: large;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  transition: 0.5s;
+}
+.newMemory :first-child > button:hover {
+  background-color: #8e9092ab;
+}
+.newMemory :last-child {
+  border-radius: 0 0 20px 20px;
+  width: 100%;
+  background-color: #3b4650;
+}
+.newMemory textarea {
+  width: 80%;
+  margin-top: 10px;
+  font-size: 1.5rem;
 }
