@@ -6,7 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
@@ -24,7 +24,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export const db = getFirestore(app);
-const storage = getStorage(app);
+export const storage = getStorage(app);
 export let user;
 
 export async function signInFn(email, pass) {
@@ -68,7 +68,6 @@ export async function signUpFn(name, email, pass) {
           img: "https://via.placeholder.com/350x150",
         }
       );
-      ref(storage, user.uid);
     })
     .then(() => {
       signInFn(email, pass);
