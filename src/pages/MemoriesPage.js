@@ -3,12 +3,19 @@ import { Memory } from "../components/memory";
 import { AddMemoryBtn } from "../components/addMemoryBtn";
 import img from "../images/japan.jpg";
 import { NewMemoryModal } from "../components/addMemoryModal";
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { user } from "../data/firebase";
 
 export function MemoriesPage() {
   const [memoryVisible, setMemoryVisible] = React.useState(false);
   const [newMemoryInputs, setNewMemoryInputs] = React.useState({});
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/sign-in");
+    }
+  }, []);
   function memoryVisibleControl() {
     setMemoryVisible(!memoryVisible);
   }
@@ -22,6 +29,7 @@ export function MemoriesPage() {
       };
     });
   }
+
   return (
     <>
       <Header />
