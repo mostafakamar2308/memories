@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { SignUpForm } from "../components/signUpForm";
 
 function importAll(r) {
@@ -15,6 +16,9 @@ const images = importAll(
 let keys = Object.keys(images);
 
 export function SignUpPage() {
+  useEffect(() => {
+    document.title = "Memories | Sign Up";
+  }, []);
   return (
     <div className="form-container">
       {keys.map((ele, index) => {

@@ -15,6 +15,8 @@ export function MemoriesPage() {
     if (!user) {
       navigate("/sign-in");
     }
+
+    document.title = "Memories | Home";
   }, []);
   function memoryVisibleControl() {
     setMemoryVisible(!memoryVisible);
