@@ -5,16 +5,35 @@ import img from "../images/japan.jpg";
 import { NewMemoryModal } from "../components/addMemoryModal";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { user } from "../data/firebase";
+import { user, db } from "../data/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 export function MemoriesPage() {
   const [memoryVisible, setMemoryVisible] = React.useState(false);
+  const [memoriesText, setMemoriesText] = React.useState([]);
   const [newMemoryInputs, setNewMemoryInputs] = React.useState({});
   const navigate = useNavigate();
+
+  async function fetchMemoriesText() {
+    const ref = collection(db, "users", user.uid, "memories");
+    const data = await getDocs(ref);
+    let arr = [];
+    data.forEach((doc) => {
+      console.log(doc.id);
+      console.log(doc.data());
+      arr.push(doc.data());
+    });
+    return arr;
+  }
   useEffect(() => {
     if (!user) {
       navigate("/sign-in");
     }
+    const memories = fetchMemoriesText();
+    memories.then((res) => {
+      console.log(res);
+      setMemoriesText(res);
+    });
 
     document.title = "Memories | Home";
   }, []);
@@ -36,6 +55,18 @@ export function MemoriesPage() {
     <>
       <Header />
       <section className="memories-container">
+        {memoriesText.map((ele) => {
+          console.log(ele.description);
+          return (
+            <Memory
+              title={ele.title}
+              key={ele.date}
+              msg={ele.description}
+              img={img}
+              date={ele.date}
+            />
+          );
+        })}
         <Memory
           title="First Memory"
           msg="I really want to marry more than 1 wife, apart from Fun also helping women and raising an orphan is a way to Gannah"
