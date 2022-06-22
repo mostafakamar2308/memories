@@ -8,9 +8,9 @@ export function NewMemoryModal(props) {
   function uploadPhotos(file) {
     const imageRef = ref(
       storage,
-      `${
-        user.uid
-      }/${new Date().getUTCDate()}-${new Date().getMonth()}-${new Date().getFullYear()}/photo`
+      `${user.uid}/${new Date().getUTCDate()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getFullYear()}/photo`
     );
     uploadBytes(imageRef, file, { contentType: "image/jpeg" });
   }
@@ -53,27 +53,14 @@ export function NewMemoryModal(props) {
             uploadPhotos(document.getElementById("img-input").files[0]);
           }}
         >
-          <input
-            placeholder="Memory Title"
-            name="title"
-            id="title"
-            required
-            onChange={props.handleInput}
-          />
+          <input placeholder="Memory Title" name="title" id="title" required />
           <textarea
             placeholder="Memory Description"
             name="description"
             id="description"
             required
-            onChange={props.handleInput}
           />
-          <input
-            type="file"
-            placeholder="Memory Img"
-            required
-            id="img-input"
-            onChange={props.handleInput}
-          />
+          <input type="file" placeholder="Memory Img" required id="img-input" />
           <input type="submit" value="Save Memory" />
         </form>
       </div>
