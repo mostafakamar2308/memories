@@ -11,6 +11,11 @@ import { ref } from "firebase/storage";
 
 export function MemoriesPage() {
   const [memoryVisible, setMemoryVisible] = React.useState(false);
+  const [newMemoryTexts, setNewMemoryTexts] = React.useState({
+    title: "",
+    description: "",
+  });
+  const [newMemoryImage, setNewMemoryImage] = React.useState("");
   const [memoriesText, setMemoriesText] = React.useState([]);
   const navigate = useNavigate();
 
@@ -26,11 +31,6 @@ export function MemoriesPage() {
     return arr;
   }
 
-  function createNewMemory(title, description) {
-    setMemoriesText((old) =>
-      old.unshift({ title: title, description: description })
-    );
-  }
   useEffect(() => {
     if (!user) {
       navigate("/sign-in");
@@ -46,6 +46,26 @@ export function MemoriesPage() {
     setMemoryVisible(!memoryVisible);
   }
 
+  function changeMemoryText(e) {
+    setNewMemoryTexts((old) => {
+      return { ...old, [e.target.name]: e.target.value };
+    });
+  }
+  function changeMemoryImage(e) {
+    setNewMemoryImage(e.target.value);
+  }
+  function makeNewMemoryLocally() {
+    setMemoriesText((old) => {
+      old.unshift({
+        title: newMemoryTexts.title,
+        description: newMemoryTexts.description,
+        date: `${new Date().getUTCDate()}-${
+          new Date().getMonth() + 1
+        }-${new Date().getFullYear()}`,
+      });
+      return old;
+    });
+  }
   return (
     <>
       <Header />
@@ -65,8 +85,10 @@ export function MemoriesPage() {
       <AddMemoryBtn handleClick={memoryVisibleControl} />
       {memoryVisible && (
         <NewMemoryModal
+          handleInputChange={changeMemoryText}
           handleClick={memoryVisibleControl}
-          handleInput={createNewMemory}
+          handleImageInput={changeMemoryImage}
+          handleFormSubmit={makeNewMemoryLocally}
         />
       )}
     </>
