@@ -16,7 +16,7 @@ header {
   height: 15vh;
   background-color: #f2f0e7;
 }
-header img {
+header > div > img {
   width: 100px;
 }
 
@@ -167,12 +167,9 @@ h1 {
   }
 }
 .user-photo {
+  margin-right: 20px;
   cursor: pointer;
-}
-.user-photo img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  position: relative;
 }
 
 .memory {
@@ -269,4 +266,13 @@ h1 {
   width: 80%;
   margin-top: 10px;
   font-size: 1.5rem;
+}
+.user-menu {
+  position: absolute;
+  bottom: -200%;
+  right: -20%;
+  width: fit-content;
+}
+.user-menu button {
+  width: max-content;
 }

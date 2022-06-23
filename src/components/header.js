@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { db, user } from "../data/firebase";
+import arrow from "../images/downward-arrow.png";
+import { auth, db, user } from "../data/firebase";
 import logo from "../images/Memories.png";
 import { getDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { signOut } from "firebase/auth";
 export function Header() {
   const [userName, setUserName] = useState("");
+  const [signOutVisible, setSignOutVisible] = useState(false);
 
   getUserData();
   async function getUserData() {
@@ -33,7 +36,26 @@ export function Header() {
         </button>
       ) : (
         <div className="user-photo">
-          <h3> {userName}</h3>
+          <h3
+            onClick={() => {
+              setSignOutVisible((old) => !old);
+            }}
+          >
+            {userName} <img src={arrow} width="20px" alt="arrow" />
+          </h3>
+          {signOutVisible && (
+            <div className="user-menu">
+              <button
+                onClick={() => {
+                  signOut(auth).then(
+                    () => (window.location.href = "http://localhost:3000/")
+                  );
+                }}
+              >
+                Log Out
+              </button>
+            </div>
+          )}
         </div>
       )}
     </header>
