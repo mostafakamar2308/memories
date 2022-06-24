@@ -1,278 +1,87 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
 }
 body {
-  background-color: #edeade;
+  height: 100vh;
+  font-size: 1rem;
+  background-color: var(--forth-color);
 }
-
+:root {
+  --primary-color: #f15412;
+  --black-color: #000;
+  --secondary-color: #161e54;
+  --tertiary-color: #34b3f1;
+  --forth-color: #ff9b6a;
+  --white-color: #eeeeee;
+}
 header {
+  background-color: var(--primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 1rem;
-  box-shadow: grey 0 0 2px 0;
-  height: 15vh;
-  background-color: #f2f0e7;
-}
-header > div > img {
-  width: 100px;
+  padding: 0.5rem 2rem 0rem 1rem;
 }
 
-button {
-  background-color: rgb(85, 144, 212);
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 15px;
-  cursor: pointer;
+.logo {
+  width: 150px;
 }
-a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-main {
-  height: 85vh;
+.home main {
+  height: calc(100vh - 100px);
   display: grid;
   grid-template-columns: 50% 50%;
+  background-color: var(--forth-color);
 }
-
 .attraction {
   width: 100%;
+  margin: 0 auto;
 }
 .descriptionSite {
-  font-size: 1.85em;
-  padding: 1rem 0.5rem;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  row-gap: 30px;
-  padding-top: 3rem;
-  text-align: left;
+  justify-content: center;
+  font-size: 2.25rem;
+  padding: 1rem 4rem;
+}
+header button {
+  background-color: var(--black-color);
+  border-radius: 10px;
+  color: var(--white-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+header button * {
+  color: var(--white-color);
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+.home main button {
+  background-color: var(--black-color);
+  border-radius: 10px;
+  color: var(--white-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 .descriptionSite > div {
+  margin-top: 15px;
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  width: 90%;
 }
-.descriptionSite > div > button {
-  font-size: 1.35rem;
-}
-
-.form-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-.form-container > div {
-  width: 40%;
-  text-align: center;
+.descriptionSite h1 {
+  color: var(--secondary-color);
 }
 
-form {
-  width: calc(100% + 2rem);
-  font-size: 2em;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 30px;
-  padding: 2rem 1rem;
-}
-form input {
-  font-size: 2rem;
-  width: 80%;
-  text-indent: 10px;
-  padding: 0.15rem 0;
-  border: rgb(51, 200, 116) 2px solid;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-form input:focus {
-  outline: none;
-  border: seagreen 2px solid;
-}
-form input[type="submit"] {
-  width: fit-content;
-  padding: 0.5rem 1rem;
-  margin-top: 10px;
-  border: none;
-  background-color: springgreen;
-  color: white;
-  text-align: center;
-  border-radius: 10px;
-  text-indent: 0;
-  cursor: pointer;
-}
-.scribble {
-  animation: scribble-animation linear 0s infinite alternate;
-}
-.scribble-1 {
-  top: 50px;
-  left: 100px;
-  animation-duration: 300ms;
-}
-.scribble-2 {
-  top: 300px;
-  left: 150px;
-  animation-duration: 1.5s;
-}
-.scribble-3 {
-  top: 450px;
-  left: 500px;
-  animation-duration: 800ms;
-}
-.scribble-4 {
-  top: 50px;
-  right: 100px;
-
-  animation-duration: 600ms;
-}
-.scribble-5 {
-  top: 350px;
-  right: 200px;
-  animation-duration: 2s;
-}
-.scribble-6 {
-  top: 50px;
-  right: 55%;
-  animation-duration: 1s;
-}
-h1 {
-  font-size: 3em !important;
-}
-.form-container h1,
-.form-container p {
-  margin: 25px;
-  font-size: 1.5rem;
-}
-.form-container a {
-  color: seagreen;
-  text-decoration: underline;
-}
-
-@keyframes scribble-animation {
-  0% {
-    margin-top: 0px;
-  }
-  100% {
-    margin-top: 15px;
-  }
-}
-.user-photo {
-  margin-right: 20px;
-  cursor: pointer;
-  position: relative;
-}
-
-.memory {
-  width: 400px;
-  row-gap: 10px;
-  display: grid;
-  border: seagreen 1px solid;
-  position: relative;
-  text-align: left;
-  border-radius: 20px;
-  box-shadow: seagreen 0 0 5px 0;
-  padding: 0 0 30px;
-  color: #3b4650;
-  overflow: hidden;
-}
-.memories-container {
-  padding: 1rem 2rem;
-}
-.memory img {
-  width: 100%;
-  margin: 0 auto;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  transition: 0.5s;
-}
-.memory img:hover {
-  transform: scale(1.1);
-}
-.memory h1 {
-  padding-left: 5px;
-}
-.memory p {
-  padding: 0 10px;
-}
-.memory span {
-  color: #616b74;
-  position: absolute;
-  bottom: 0px;
-  right: 1px;
-  padding: 5px;
-  border-radius: 10px;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  box-shadow: inset #3b465073 0 0 10px 0px;
-}
-.memory-btn {
-  position: fixed;
-  bottom: 3rem;
-  right: 5rem;
-  cursor: pointer;
-}
-.memory-btn img {
-  width: 70px;
-}
-.newMemory {
-  width: 50%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background-color: #3b4650;
-  border-radius: 15px;
-  box-shadow: #3b4650a4 0 0 0 1500px;
-}
-.newMemory > :first-child {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  font-size: 2rem;
-  border-bottom: 1px solid white;
-}
-.newMemory :first-child > button {
-  width: 50px;
-  height: 50px;
-  text-align: center !important;
-  color: white;
-  font-size: large;
-  border: none;
-  border-radius: 50%;
-  padding: 0;
-  transition: 0.5s;
-}
-.newMemory :first-child > button:hover {
-  background-color: #8e9092ab;
-}
-.newMemory :last-child {
-  border-radius: 0 0 20px 20px;
-  width: 100%;
-  background-color: #3b4650;
-}
-.newMemory textarea {
-  width: 80%;
-  margin-top: 10px;
-  font-size: 1.5rem;
-}
-.user-menu {
-  position: absolute;
-  bottom: -200%;
-  right: -20%;
-  width: fit-content;
-}
-.user-menu button {
-  width: max-content;
+.home main button * {
+  color: var(--white-color);
+  text-decoration: none;
+  font-size: 1.65rem;
 }

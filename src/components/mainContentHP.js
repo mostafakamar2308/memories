@@ -41,7 +41,7 @@ export function Home() {
         <h1>Keep Your memories in one Safe Place</h1>
         <p>
           Memories is a cloud diary for you. You can save, view and sort your
-          memories anytime, anywhere
+          memories anytime, anywhere.
         </p>
         <div>
           <button

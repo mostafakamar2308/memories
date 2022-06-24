@@ -8,6 +8,7 @@ import { user, db } from "../data/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { storage } from "../data/firebase";
 import { ref } from "firebase/storage";
+import { SideBar } from "../components/sidebar";
 
 export function MemoriesPage() {
   const [memoryVisible, setMemoryVisible] = React.useState(false);
@@ -69,19 +70,22 @@ export function MemoriesPage() {
   return (
     <>
       <Header />
-      <section className="memories-container">
-        {memoriesText.map((ele) => {
-          return (
-            <Memory
-              title={ele.title}
-              key={ele.date}
-              msg={ele.description}
-              img={ele.date}
-              date={ele.date}
-            />
-          );
-        })}
-      </section>
+      <main className="main-memories">
+        <SideBar />
+        <section className="memories-container">
+          {memoriesText.map((ele) => {
+            return (
+              <Memory
+                title={ele.title}
+                key={ele.date}
+                msg={ele.description}
+                img={ele.date}
+                date={ele.date}
+              />
+            );
+          })}
+        </section>
+      </main>
       <AddMemoryBtn handleClick={memoryVisibleControl} />
       {memoryVisible && (
         <NewMemoryModal
