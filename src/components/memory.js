@@ -1,9 +1,11 @@
 import React from "react";
-import { storage, user } from "../data/firebase";
+import { storage, user, db } from "../data/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
+import { arrayRemove, arrayUnion, updateDoc, doc } from "firebase/firestore";
 
 export function Memory(props) {
   const [photoURL, setPhotoURL] = React.useState("");
+  const [favorite, setFavorite] = React.useState(props.favorite || false);
   React.useEffect(() => {
     getDownloadURL(ref(storage, `${user.uid}/${props.img}/photo`))
       .then((url) => {
@@ -11,15 +13,29 @@ export function Memory(props) {
       })
       .catch((err) => console.log(err));
   }, [photoURL]);
+  React.useEffect(() => {
+    favorite
+      ? updateDoc(doc(db, "users", user.uid), {
+          favorites: arrayUnion(props.date),
+        })
+      : updateDoc(doc(db, "users", user.uid), {
+          favorites: arrayRemove(props.date),
+        });
+  }, [favorite]);
   return (
     <div className="memory">
       <div className="desktop-btns">
-        {/* <button>
+        <button
+          className={favorite ? "favorite" : ""}
+          onClick={() => {
+            setFavorite(!favorite);
+          }}
+        >
           <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            fill="none"
+            fill="red"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -29,8 +45,8 @@ export function Memory(props) {
               fill="currentColor"
             />
           </svg>
-        </button> */}
-        <button>
+        </button>
+        {/* <button>
           <svg
             width="24"
             height="24"
@@ -47,7 +63,7 @@ export function Memory(props) {
             <path d="M9 9H11V17H9V9Z" fill="currentColor" />
             <path d="M13 9H15V17H13V9Z" fill="currentColor" />
           </svg>
-        </button>
+        </button> */}
       </div>
       <img src={photoURL} />
       <h1>{props.title}</h1>

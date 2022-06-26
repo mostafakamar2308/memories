@@ -57,6 +57,21 @@ header button {
   outline: none;
   cursor: pointer;
 }
+.user-photo {
+  position: relative;
+  cursor: pointer;
+}
+.user-photo h3 {
+  display: flex;
+  justify-content: center;
+  column-gap: 3px;
+  align-items: center;
+}
+.user-menu {
+  position: absolute;
+  bottom: -150%;
+  right: 0;
+}
 header button * {
   color: var(--white-color);
   text-decoration: none;
@@ -112,6 +127,7 @@ header button * {
   background-color: var(--tertiary-color);
   border-color: var(--secondary-color);
 }
+
 .memories-container {
   padding: 1rem 2rem;
   display: flex;
@@ -174,7 +190,8 @@ header button * {
   width: 100%;
 }
 .memory-btn:hover {
-  background-color: var(--secondary-color);
+  border: 2px solid var(--tertiary-color);
+  background-color: var(--tertiary-color);
   color: white;
 }
 .memory .desktop-btns {
@@ -201,7 +218,79 @@ header button * {
 .memory:hover .desktop-btns * {
   opacity: 1;
 }
-.memory:hover .desktop-btns > *:hover {
-  background-color: var(--primary-color) !important;
+.memory:hover .desktop-btns > *:hover * {
+  background-color: white;
+  fill: #f15412;
+}
+.favorite * {
+  fill: #f15412;
+}
+.newMemory {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 800px;
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+  color: white;
+}
+.newMemory > :nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.75rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--white-color);
+}
+.close-memory {
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.close-memory:hover {
+  background-color: rgba(255, 255, 255, 0.219);
+}
+
+.newMemory :nth-child(2) > * {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+.newMemory :nth-child(2) > * > * {
+  width: 100%;
+}
+.newMemory form {
+  padding: 1rem 1.5rem;
+  row-gap: 10px;
+  align-items: center;
+}
+.newMemory form > input,
+.description-input {
+  font-size: 1.8rem;
+  text-indent: 5px;
   outline: none;
+}
+.description-input {
+  resize: none;
+  height: 150px;
+}
+.save-input {
+  width: fit-content !important;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: var(--tertiary-color);
+  color: white;
+  border-radius: 20px;
+  border: none;
 }

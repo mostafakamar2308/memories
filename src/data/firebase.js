@@ -47,8 +47,7 @@ export async function signUpFn(name, email, pass) {
     .then((user) => {
       setDoc(doc(db, "users", user.uid), {
         displayName: name,
-        memory: {},
-        tags: [],
+        favorites: [],
       });
       //collection(db, "users", user.uid, "memories");
       setDoc(
