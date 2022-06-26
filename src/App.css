@@ -85,3 +85,42 @@ header button * {
   text-decoration: none;
   font-size: 1.65rem;
 }
+.main-memories {
+  display: grid;
+  grid-template-columns: 20% 70%;
+}
+.side-bar {
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  border-right: var(--secondary-color) 3px solid;
+}
+.side-bar > * {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  border: rgba(44, 44, 44, 0.583) 2px solid;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.side-bar > button:hover {
+  color: white;
+  background-color: var(--tertiary-color);
+  border-color: var(--secondary-color);
+}
+.memories-container {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.memory {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.memory * {
+  width: 100%;
+}
