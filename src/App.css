@@ -10,6 +10,7 @@ body {
   height: 100vh;
   font-size: 1rem;
   background-color: var(--forth-color);
+  position: relative;
 }
 :root {
   --primary-color: #f15412;
@@ -115,12 +116,92 @@ header button * {
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
+  row-gap: 20px;
 }
 .memory {
-  width: 600px;
+  width: 700px;
   display: flex;
   flex-direction: column;
+  text-align: left;
+  border: var(--secondary-color) 1.5px solid;
+  border-radius: 20px;
+  padding-bottom: 5px;
+  box-shadow: 0 0rem 5px 0px var(--tertiary-color);
+  -webkit-box-shadow: 0 0rem 5px 0px var(--tertiary-color);
+  -moz-box-shadow: 0 0rem 5px 0px var(--tertiary-color);
+  position: relative;
+}
+.memory > img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .memory * {
   width: 100%;
+  font-size: 1.7rem;
+  word-break: break-all;
+}
+.memory h1,
+.memory p {
+  margin-left: 0.5rem;
+}
+.memory > span {
+  text-align: right;
+  font-size: 1.2rem;
+  align-self: flex-end;
+  margin-right: 0.5rem;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  width: fit-content;
+  border-radius: 10px;
+  padding: 2px 5px;
+}
+.memory-btn {
+  position: fixed;
+  right: 1rem;
+  width: 60px;
+  height: 60px;
+  bottom: 1rem;
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  background-color: white;
+  color: var(--secondary-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: 0.3s all ease;
+}
+.memory-btn img {
+  width: 100%;
+}
+.memory-btn:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.memory .desktop-btns {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 20px;
+}
+.memory .desktop-btns * {
+  display: block;
+  width: fit-content;
+  box-sizing: content-box;
+  border: none;
+  background-color: transparent;
+  color: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+.memory:hover .desktop-btns * {
+  opacity: 1;
+}
+.memory:hover .desktop-btns > *:hover {
+  background-color: var(--primary-color) !important;
+  outline: none;
 }
