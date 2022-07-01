@@ -391,6 +391,13 @@ header button * {
 .form p a {
   color: var(--tertiary-color);
 }
+.loader-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @keyframes scribble-animation {
   0% {
