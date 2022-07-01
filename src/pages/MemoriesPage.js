@@ -29,7 +29,7 @@ export function MemoriesPage() {
     let arr = [];
     data.forEach((doc) => {
       const storageRef = ref(storage, user.uid, doc.data().date);
-      arr.unshift(doc.data());
+      arr.push(doc.data());
       arr[0].photoRef = storageRef;
     });
     return arr;
