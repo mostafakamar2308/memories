@@ -47,6 +47,7 @@ export function MemoriesPage() {
     memories
       .then((res) => {
         setMemoriesText(res);
+        getFavoriteMemories();
         timer = setTimeout(() => {
           console.log(loaded);
           setLoaded(true);
@@ -59,9 +60,6 @@ export function MemoriesPage() {
     };
   }, []);
 
-  //display loader while data are being fetched
-  useEffect(() => {}, []);
-
   //show new memory Modal
   function memoryVisibleControl() {
     setMemoryVisible(!memoryVisible);
@@ -71,6 +69,7 @@ export function MemoriesPage() {
     let favorites = favoritesSnap.data().favorites;
     console.log(favorites);
     setFavoriteMemories(favorites);
+    return favorites;
   }
 
   function allMemoriesBtn() {
@@ -81,19 +80,23 @@ export function MemoriesPage() {
     }, 1000);
   }
   async function favoriteMemoriesBtn() {
-    await getFavoriteMemories().then(() => {
-      console.log(favoriteMemories);
-      setActiveMemories((old) => {
+    let timer;
+    setLoaded(false);
+    await getFavoriteMemories().then((res) => {
+      console.log(res);
+      setActiveMemories(() => {
         let arr = [];
-        for (let i = 0; i < favoriteMemories.length; i++) {
-          console.log(favoriteMemories[i]);
-          let f = old.filter((ele) => ele.date === favoriteMemories[i]);
-          console.log(f);
+        for (let i = 0; i < res.length; i++) {
+          let f = memoriesText.filter((ele) => ele.date === res[i]);
           arr.push(f[0]);
         }
+        timer = setTimeout(() => {
+          setLoaded(true);
+        }, 1000);
         console.log(arr);
         return arr;
       });
+      clearTimeout(timer);
     });
   }
 
@@ -130,7 +133,7 @@ export function MemoriesPage() {
           {!loaded ? (
             <div className="loader-container">
               <RotatingCircleLoader
-                size={100}
+                size={80}
                 duration={2}
                 {...loaderColor}
                 loading
