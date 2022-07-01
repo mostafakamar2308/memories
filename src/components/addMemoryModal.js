@@ -45,6 +45,7 @@ export function NewMemoryModal(props) {
           X
         </button>
       </div>
+
       <div>
         <form
           onSubmit={(e) => {
@@ -57,6 +58,7 @@ export function NewMemoryModal(props) {
           }}
         >
           <input
+            className="title-input"
             placeholder="Memory Title"
             name="title"
             id="title"
@@ -64,20 +66,22 @@ export function NewMemoryModal(props) {
             onChange={props.handleInputChange}
           />
           <textarea
+            className="description-input"
             placeholder="Memory Description"
             name="description"
             id="description"
+            maxLength={500}
             required
             onChange={props.handleInputChange}
           />
           <input
+            className="file-input"
             type="file"
             placeholder="Memory Img"
             required
             id="img-input"
-            onChange={props.handleImageInput}
           />
-          <input type="submit" value="Save Memory" />
+          <input type="submit" className="save-input" value="Save Memory" />
         </form>
       </div>
     </section>

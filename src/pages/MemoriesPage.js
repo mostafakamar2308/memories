@@ -5,9 +5,10 @@ import { NewMemoryModal } from "../components/addMemoryModal";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { user, db } from "../data/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { storage } from "../data/firebase";
 import { ref } from "firebase/storage";
+import { SideBar } from "../components/sidebar";
 
 export function MemoriesPage() {
   const [memoryVisible, setMemoryVisible] = React.useState(false);
@@ -15,8 +16,9 @@ export function MemoriesPage() {
     title: "",
     description: "",
   });
-  const [newMemoryImage, setNewMemoryImage] = React.useState("");
   const [memoriesText, setMemoriesText] = React.useState([]);
+  const [activeMemories, setActiveMemories] = React.useState([]);
+  const [favoriteMemories, setFavoriteMemories] = React.useState([]);
   const navigate = useNavigate();
 
   async function fetchMemoriesText() {
@@ -38,12 +40,40 @@ export function MemoriesPage() {
     const memories = fetchMemoriesText();
     memories.then((res) => {
       setMemoriesText(res);
+      getFavoriteMemories();
+      setActiveMemories(memoriesText);
+      document.querySelector(".all-btn").click();
     });
-
     document.title = "Memories | Home";
   }, []);
+
+  //show new memory Modal
   function memoryVisibleControl() {
     setMemoryVisible(!memoryVisible);
+  }
+  async function getFavoriteMemories() {
+    let favoritesSnap = await getDoc(doc(db, "users", user.uid));
+    let favorites = favoritesSnap.data().favorites;
+    console.log(favorites);
+    setFavoriteMemories(favorites);
+  }
+
+  function allMemoriesBtn() {
+    setActiveMemories(memoriesText);
+  }
+  async function favoriteMemoriesBtn() {
+    await getFavoriteMemories();
+    setActiveMemories((old) => {
+      let arr = [];
+      for (let i = 0; i < favoriteMemories.length; i++) {
+        console.log(favoriteMemories[i]);
+        let f = old.filter((ele) => ele.date === favoriteMemories[i]);
+        console.log(f);
+        arr.push(f[0]);
+      }
+      console.log(arr);
+      return arr;
+    });
   }
 
   function changeMemoryText(e) {
@@ -51,9 +81,7 @@ export function MemoriesPage() {
       return { ...old, [e.target.name]: e.target.value };
     });
   }
-  function changeMemoryImage(e) {
-    setNewMemoryImage(e.target.value);
-  }
+
   function makeNewMemoryLocally() {
     setMemoriesText((old) => {
       old.unshift({
@@ -69,25 +97,32 @@ export function MemoriesPage() {
   return (
     <>
       <Header />
-      <section className="memories-container">
-        {memoriesText.map((ele) => {
-          return (
-            <Memory
-              title={ele.title}
-              key={ele.date}
-              msg={ele.description}
-              img={ele.date}
-              date={ele.date}
-            />
-          );
-        })}
-      </section>
+      <main className="main-memories">
+        <SideBar
+          handleFavorite={getFavoriteMemories}
+          handlePressFavorite={favoriteMemoriesBtn}
+          handlePressAll={allMemoriesBtn}
+        />
+        <section className="memories-container">
+          {activeMemories.map((ele) => {
+            return (
+              <Memory
+                title={ele.title}
+                key={ele.date}
+                msg={ele.description}
+                img={ele.date}
+                date={ele.date}
+                favorite={favoriteMemories.includes(ele.date) ? true : false}
+              />
+            );
+          })}
+        </section>
+      </main>
       <AddMemoryBtn handleClick={memoryVisibleControl} />
       {memoryVisible && (
         <NewMemoryModal
           handleInputChange={changeMemoryText}
           handleClick={memoryVisibleControl}
-          handleImageInput={changeMemoryImage}
           handleFormSubmit={makeNewMemoryLocally}
         />
       )}

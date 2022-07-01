@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import arrow from "../images/downward-arrow.png";
 import { auth, db, user } from "../data/firebase";
-import logo from "../images/Memories.png";
+import logo from "../images/lgoo.png";
 import { getDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
@@ -24,15 +24,17 @@ export function Header() {
   return (
     <header>
       <div>
-        <img src={logo}></img>
+        <img className="logo" src={logo}></img>
       </div>
       {!user ? (
         <button
           onClick={() => {
-            window.location.href = "http://localhost:3000/sign-in";
+            document.querySelector("#sign-in-header").click();
           }}
         >
-          <Link to="/sign-in">Sign In</Link>
+          <Link id="sign-in-header" to="/sign-in">
+            Sign In
+          </Link>
         </button>
       ) : (
         <div className="user-photo">

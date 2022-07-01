@@ -7,7 +7,7 @@ export function HomePage() {
     document.title = "Memories | Home";
   }, []);
   return (
-    <div>
+    <div className="home">
       <Header />
       <Home />
     </div>
