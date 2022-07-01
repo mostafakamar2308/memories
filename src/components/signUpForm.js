@@ -25,15 +25,25 @@ export function SignUpForm() {
     });
   }
   return (
-    <div>
+    <div className="form">
       <h1>Sign Up</h1>
       <form>
-        <label htmlFor="Name">Your Name</label>
-        <input name="name" onChange={updateInput}></input>
+        <label htmlFor="name">Your Name</label>
+        <input name="name" id="name" onChange={updateInput}></input>
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" onChange={updateInput}></input>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          onChange={updateInput}
+        ></input>
         <label htmlFor="pass">password</label>
-        <input type="password" name="pass" onChange={updateInput}></input>
+        <input
+          type="password"
+          name="pass"
+          id="pass"
+          onChange={updateInput}
+        ></input>
         <input type="submit" onClick={handleSubmit} />
       </form>
       <p>
