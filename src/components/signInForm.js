@@ -24,20 +24,22 @@ export function SignInForm() {
     });
   }
   return (
-    <div>
+    <div className="form">
       <h1>Sign In</h1>
       <form>
         <label htmlFor="email">Email</label>
         <input
           type="email"
           name="email"
+          id="email"
           onChange={updateInput}
           required
         ></input>
-        <label htmlFor="pass">password</label>
+        <label htmlFor="pass">Password</label>
         <input
           type="password"
           name="pass"
+          id="pass"
           onChange={updateInput}
           required
         ></input>
