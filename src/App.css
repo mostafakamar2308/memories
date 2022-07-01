@@ -102,6 +102,7 @@ header button * {
   font-size: 1.65rem;
 }
 .main-memories {
+  min-height: 85vh;
   display: grid;
   grid-template-columns: 20% 70%;
 }

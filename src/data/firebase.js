@@ -29,8 +29,6 @@ export let user;
 
 export async function signInFn(email, pass) {
   await signInWithEmailAndPassword(auth, email, pass).then((userCreditials) => {
-    console.log(userCreditials.user);
-    console.log(`Welcome Back Master ${userCreditials.user.email}`);
     user = userCreditials.user;
     return user;
   });

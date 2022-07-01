@@ -80,7 +80,6 @@ export function NewMemoryModal(props) {
             placeholder="Memory Img"
             required
             id="img-input"
-            onChange={props.handleImageInput}
           />
           <input type="submit" className="save-input" value="Save Memory" />
         </form>
