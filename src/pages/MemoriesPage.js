@@ -42,6 +42,7 @@ export function MemoriesPage() {
       setMemoriesText(res);
       getFavoriteMemories();
       setActiveMemories(memoriesText);
+      document.querySelector(".all-btn").click();
     });
     document.title = "Memories | Home";
   }, []);
@@ -60,16 +61,15 @@ export function MemoriesPage() {
   function allMemoriesBtn() {
     setActiveMemories(memoriesText);
   }
-  function favoriteMemoriesBtn() {
-    getFavoriteMemories();
-    console.log(favoriteMemories);
-    console.log(activeMemories);
+  async function favoriteMemoriesBtn() {
+    await getFavoriteMemories();
     setActiveMemories((old) => {
-      console.log(old);
       let arr = [];
       for (let i = 0; i < favoriteMemories.length; i++) {
         console.log(favoriteMemories[i]);
-        arr.unshift(old.filter((ele) => ele.date === favoriteMemories[i]));
+        let f = old.filter((ele) => ele.date === favoriteMemories[i]);
+        console.log(f);
+        arr.push(f[0]);
       }
       console.log(arr);
       return arr;

@@ -3,8 +3,13 @@ export function SideBar(props) {
   return (
     <aside className="side-bar">
       <button
-        onClick={() => {
+        className="all-btn"
+        onClick={(e) => {
           props.handlePressAll();
+          Array.from(document.querySelector(".side-bar").children).forEach(
+            (ele) => ele.classList.remove("active")
+          );
+          e.target.classList.add("active");
         }}
       >
         <svg
@@ -27,9 +32,14 @@ export function SideBar(props) {
         All Memories
       </button>
       <button
-        onClick={() => {
+        className="fav-btn"
+        onClick={(e) => {
           props.handleFavorite();
           props.handlePressFavorite();
+          Array.from(document.querySelector(".side-bar").children).forEach(
+            (ele) => ele.classList.remove("active")
+          );
+          e.target.classList.add("active");
         }}
       >
         <svg

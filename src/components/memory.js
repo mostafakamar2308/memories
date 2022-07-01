@@ -7,12 +7,12 @@ export function Memory(props) {
   const [photoURL, setPhotoURL] = React.useState("");
   const [favorite, setFavorite] = React.useState(props.favorite || false);
   React.useEffect(() => {
-    getDownloadURL(ref(storage, `${user.uid}/${props.img}/photo`))
+    getDownloadURL(ref(storage, `${user.uid}/${props.date}/photo`))
       .then((url) => {
         setPhotoURL(url);
       })
       .catch((err) => console.log(err));
-  }, [photoURL]);
+  });
   React.useEffect(() => {
     favorite
       ? updateDoc(doc(db, "users", user.uid), {

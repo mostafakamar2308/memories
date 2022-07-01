@@ -123,7 +123,8 @@ header button * {
   cursor: pointer;
   transition: 0.3s;
 }
-.side-bar > button:hover {
+.side-bar > button:hover,
+.side-bar > .active {
   color: white;
   background-color: var(--tertiary-color);
   border-color: var(--secondary-color);
