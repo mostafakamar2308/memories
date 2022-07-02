@@ -51,7 +51,7 @@ export function NewMemoryModal(props) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            document.querySelector(".newMemory").classList.add("progressing");
+            document.querySelector(".save-input").classList.add("progressing");
             uploadMemory(
               document.querySelector("#title").value,
               document.querySelector("#description").value

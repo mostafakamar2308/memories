@@ -39,6 +39,15 @@ export function MemoriesPage() {
     if (!user) navigate("/sign-in");
     document.title = "Memories | Home";
   }, []);
+  function getMemories() {
+    const memories = fetchMemoriesText();
+    memories
+      .then((res) => {
+        setMemoriesText(res);
+        allMemoriesBtn();
+      })
+      .catch((e) => console.log(e));
+  }
 
   //fetch all data from memories
   useEffect(() => {
@@ -107,15 +116,23 @@ export function MemoriesPage() {
   }
 
   function makeNewMemoryLocally() {
-    setMemoriesText((old) => {
-      old.unshift({
+    let date = `${new Date().getUTCDate()}-${
+      new Date().getMonth() + 1
+    }-${new Date().getFullYear()}`;
+    setActiveMemories((old) => {
+      let newArr;
+      if (old.filter((ele) => ele.date === date)) {
+        console.log(old.filter((ele) => ele.date !== date));
+        newArr = old.filter((ele) => ele.date !== date);
+      }
+      newArr.unshift({
         title: newMemoryTexts.title,
         description: newMemoryTexts.description,
         date: `${new Date().getUTCDate()}-${
           new Date().getMonth() + 1
         }-${new Date().getFullYear()}`,
       });
-      return old;
+      return newArr;
     });
   }
   const loaderColor = { colors: ["#5e22f0", "#f6b93b"] };
@@ -138,6 +155,11 @@ export function MemoriesPage() {
                 {...loaderColor}
                 loading
               />{" "}
+            </div>
+          ) : activeMemories.length === 0 ? (
+            <div className="empty">
+              <h1>No memories, YET</h1>
+              <p>Add new memory now to see it appear</p>
             </div>
           ) : (
             activeMemories.map((ele) => {

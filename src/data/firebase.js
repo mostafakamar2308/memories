@@ -48,23 +48,23 @@ export async function signUpFn(name, email, pass) {
         favorites: [],
       });
       //collection(db, "users", user.uid, "memories");
-      setDoc(
-        doc(
-          db,
-          "users",
-          user.uid,
-          "memories",
-          `${new Date().getUTCDate()}-${
-            new Date().getMonth() + 1
-          }-${new Date().getFullYear()}`
-        ),
-        {
-          title: "First Memory",
-          description: "You have 1 memory per day",
-          date: "14-6-2022",
-          img: "https://via.placeholder.com/350x150",
-        }
-      );
+      // setDoc(
+      //   doc(
+      //     db,
+      //     "users",
+      //     user.uid,
+      //     "memories",
+      //     `${new Date().getUTCDate()}-${
+      //       new Date().getMonth() + 1
+      //     }-${new Date().getFullYear()}`
+      //   ),
+      //   {
+      //     title: "First Memory",
+      //     description: "You have 1 memory per day",
+      //     date: "14-6-2022",
+      //     img: "https://via.placeholder.com/350x150",
+      //   }
+      // );
     })
     .then(() => {
       signInFn(email, pass);
