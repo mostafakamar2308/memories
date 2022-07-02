@@ -1,4 +1,4 @@
-import { doc } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage, user } from "../data/firebase";
 import { db } from "../data/firebase";
@@ -8,6 +8,7 @@ export function NewMemoryModal(props) {
   function uploadPhotos(file) {
     const imageRef = ref(
       storage,
+
       `${user.uid}/${new Date().getUTCDate()}-${
         new Date().getMonth() + 1
       }-${new Date().getFullYear()}/photo`
@@ -17,7 +18,7 @@ export function NewMemoryModal(props) {
       props.handleClick();
     });
   }
-  function uploadMemory(title, description) {
+  async function uploadMemory(title, description) {
     setDoc(
       doc(
         db,
@@ -50,6 +51,7 @@ export function NewMemoryModal(props) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            document.querySelector(".newMemory").classList.add("uploading");
             uploadMemory(
               document.querySelector("#title").value,
               document.querySelector("#description").value
