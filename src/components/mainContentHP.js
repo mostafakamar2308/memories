@@ -38,10 +38,12 @@ export function Home() {
         ></img>
       </section>
       <section className="descriptionSite">
-        <h1>Keep Your memories in one Safe Place</h1>
+        <h1>
+          Keep your <span>memories</span> in one safe place
+        </h1>
         <p>
-          Memories is a cloud diary for you. You can save, view and sort your
-          memories anytime, anywhere.
+          Memories is a cloud diary for you. You can save, view and favorite
+          your memories anytime, anywhere.
         </p>
         <div>
           <button

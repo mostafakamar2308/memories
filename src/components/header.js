@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import arrow from "../images/downward-arrow.png";
 import { auth, db, user } from "../data/firebase";
 import logo from "../images/lgoo.png";
@@ -8,6 +8,7 @@ import { signOut } from "firebase/auth";
 export function Header() {
   const [userName, setUserName] = useState("");
   const [signOutVisible, setSignOutVisible] = useState(false);
+  const navigate = useNavigate();
 
   getUserData();
   async function getUserData() {
@@ -49,9 +50,7 @@ export function Header() {
             <div className="user-menu">
               <button
                 onClick={() => {
-                  signOut(auth).then(
-                    () => (window.location.href = "http://localhost:3000/")
-                  );
+                  signOut(auth).then(() => navigate("/"));
                 }}
               >
                 Log Out
