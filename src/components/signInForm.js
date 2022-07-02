@@ -19,6 +19,7 @@ export function SignInForm() {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    document.querySelector(".sign-in-form").classList.add("progressing");
     signInFn(input.email, input.pass).then(() => {
       navigate("/memories");
     });
@@ -43,7 +44,7 @@ export function SignInForm() {
           onChange={updateInput}
           required
         ></input>
-        <input type="submit" onClick={handleSubmit} />
+        <input type="submit" className="sign-in-form" onClick={handleSubmit} />
       </form>
       <p>
         Don't Have an Email, <Link to="/sign-up">Register</Link> Now{" "}

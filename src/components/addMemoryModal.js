@@ -51,11 +51,12 @@ export function NewMemoryModal(props) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            document.querySelector(".newMemory").classList.add("uploading");
+            document.querySelector(".newMemory").classList.add("progressing");
             uploadMemory(
               document.querySelector("#title").value,
               document.querySelector("#description").value
             );
+
             uploadPhotos(document.getElementById("img-input").files[0]);
           }}
         >

@@ -408,6 +408,9 @@ body {
     margin-top: 1.5%;
   }
 }
+.progressing {
+  background-color: #5899b9;
+}
 
 @media screen and (max-width: 829px) {
   header {
