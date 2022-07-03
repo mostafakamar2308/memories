@@ -25,3 +25,11 @@ https://people-memories.web.app/
     4. Understood the basic of how to structure your data effeciently
     5. Focused on meeting the WCA guidelines
     6. Solidify my undestanding of Git
+
+## FAQ
+
+#### Is the project complete?
+Depending on the popularity. if people started to use it. I will add more features to it
+
+#### Is the project open source?
+Yes, It's completely open source
