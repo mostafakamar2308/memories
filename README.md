@@ -22,5 +22,6 @@ https://people-memories.web.app/
     1. To design the website first. don't dive into developement too soon
     2. How to structure your react app into seperate components 
     3. Solidify my understanding of React Lifecycle hooks
-    4. understood the basic of how to structure your data effeciently
-    5. focused on meeting the WCA guidelines
+    4. Understood the basic of how to structure your data effeciently
+    5. Focused on meeting the WCA guidelines
+    6. Solidify my undestanding of Git
